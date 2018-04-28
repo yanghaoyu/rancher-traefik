@@ -63,7 +63,8 @@
     {{- if or (eq $traefik_enable "true") (eq $traefik_enable "stack") -}}
       {{- $traefik_priority := ( index $service.Labels "traefik.priority") -}}
       {{- $traefik_domain_regexp := ( index $service.Labels "traefik.domain.regexp") -}}
-      {{- $traefik_domain := ( index $service.Labels "traefik.domain") -}}
+      {{- $default_domain := getenv "TRAEFIK_RANCHER_DOMAIN" }}
+      {{- $traefik_domain := $default_domain }}
       {{- $traefik_alias := ( index $service.Labels "traefik.alias") -}}
       {{- $traefik_alias_fqdn := ( index $service.Labels "traefik.alias.fqdn") -}}
       {{- $traefik_path := ( index $service.Labels "traefik.path") -}}
